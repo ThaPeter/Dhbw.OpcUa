@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="License\license.lic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="License\license.lic" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UnifiedAutomation.UaBase">
+      <HintPath>..\..\Dependencies\UnifiedAutomation\UnifiedAutomation.UaBase.dll</HintPath>
+    </Reference>
+    <Reference Include="UnifiedAutomation.UaClient">
+      <HintPath>..\..\Dependencies\UnifiedAutomation\UnifiedAutomation.UaClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ConnectionSettingsPage.xaml.cs">
+      <DependentUpon>ConnectionSettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

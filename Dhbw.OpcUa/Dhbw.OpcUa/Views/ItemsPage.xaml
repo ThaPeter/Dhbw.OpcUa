@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dhbw.OpcUa.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:Dhbw.OpcUa.ViewModels"  
+             xmlns:model="clr-namespace:Dhbw.OpcUa.Models" 
+             xmlns:converter="clr-namespace:Dhbw.OpcUa.Converter" 
+             xmlns:vm="clr-namespace:Dhbw.OpcUa.ViewModels"
+             x:Name="BrowseItemsPage"
+             BindingContext="{StaticResource MainViewModel}">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Command="{Binding NavigateSettingsCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <CollectionView x:Name="MyCollection"
+                        ItemsSource="{Binding Tree.Items}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                        <Label Text="{Binding NodeId}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:OpcTreeViewModel}}, Path=DetailsCommand}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+        <Grid Grid.Row="1">
+            <Grid.Resources>
+                <converter:InvertBoolConverter x:Key="InvertBoolConverter" />
+            </Grid.Resources>
+            <Button Text="Connect" Margin="9" IsVisible="{Binding Connection.IsConnected, Converter={StaticResource InvertBoolConverter}}" />
+            <Button Text="Disconnect" Margin="9" IsVisible="{Binding Connection.IsConnected}" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

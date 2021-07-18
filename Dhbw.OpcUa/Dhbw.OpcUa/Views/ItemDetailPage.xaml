@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Dhbw.OpcUa.Views.ItemDetailPage"
+             Title="{Binding Tree.SelectedItem.Name}"
+             BindingContext="{StaticResource MainViewModel}">
+
+    <Grid Padding="15" BindingContext="{Binding Tree.SelectedItem}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="7*" />
+        </Grid.RowDefinitions>
+        
+        
+        <Label Grid.Row="0" Text="Name:"  FontAttributes="Bold" />
+        <Label Margin="0, 0, 0, 9" Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
+
+
+
+        <Label Grid.Row="1" Text="Id:"  FontAttributes="Bold" />
+        <Label Margin="0, 0, 0, 9" Grid.Column="1" Grid.Row="0" Text="{Binding NodeId}" />
+
+
+        <Label Grid.Row="2" Text="Type:"  FontAttributes="Bold" />
+        <Label Margin="0, 0, 0, 9" Grid.Column="1" Grid.Row="0" Text="{Binding DataType}" />
+
+
+        <Label Grid.Row="3" Text="Value:"  FontAttributes="Bold" />
+        <Label Margin="0, 0, 0, 9" Grid.Column="1" Grid.Row="0" Text="{Binding Value}" />
+
+
+        <Label Grid.Row="4" Text="Last Changes:"  FontAttributes="Bold" />
+        <Label Text="Value" Grid.Row="5" />
+        <Label Text="Time" Grid.Column="1" Grid.Row="5" />
+        <ScrollView Grid.Row="6" Grid.ColumnSpan="2">
+            <CollectionView  x:Name="LastCChange">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding Value}"  />
+                            <Label Grid.Column="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding DateTimeString }" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </ScrollView>
+
+    </Grid>
+    
+</ContentPage>
