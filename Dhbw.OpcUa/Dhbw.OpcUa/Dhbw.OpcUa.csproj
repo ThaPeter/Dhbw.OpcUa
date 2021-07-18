@@ -6,14 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="License\license.lic" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="License\license.lic" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
@@ -31,5 +23,9 @@
     <Compile Update="Views\ConnectionSettingsPage.xaml.cs">
       <DependentUpon>ConnectionSettingsPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="License\" />
   </ItemGroup>
 </Project>
