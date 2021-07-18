@@ -47,6 +47,8 @@ namespace Dhbw.OpcUa.ViewModels
         {
             try
             {
+                //github issue: https://github.com/xamarin/Xamarin.Forms/issues/11841
+                //please press back button
                 await Shell.Current.GoToAsync(nameof(ItemsPage));
             }
             catch (Exception ex)
@@ -59,6 +61,8 @@ namespace Dhbw.OpcUa.ViewModels
         {
             try
             {
+                //github issue: https://github.com/xamarin/Xamarin.Forms/issues/11841
+                //please press back button
                 await Shell.Current.GoToAsync(nameof(ItemsPage));
             }
             catch (Exception ex)
